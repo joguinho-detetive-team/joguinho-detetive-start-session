@@ -17,4 +17,16 @@ export class BaseCacheRepository {
     const value = await this.redis.get(key);
     return value ? value : null;
   }
+
+  public async del(key: string): Promise<number> {
+    return this.redis.del(key);
+  }
+
+  public async delPrefix(prefix): Promise<number> {
+    const keys = (await this.redis.keys(`cache:${prefix}:*`)).map((key) =>
+      key.replace("cache", "")
+    );
+
+    return this.redis.del(keys);
+  }
 }
