@@ -1,2 +1,2 @@
 export * from "./Redis"
-export * from "./baseCacheRepository"
+export * from "./BaseCacheRepository"
